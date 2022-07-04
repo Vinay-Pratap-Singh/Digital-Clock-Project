@@ -1,0 +1,124 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #2f363e;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock{
+    display: flex;
+    gap: 40px;
+    color: #fff;
+    /* height: 35vh; */
+}
+
+.card{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card div{
+    position: absolute;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.card svg{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    transform: rotate(-90deg);
+}
+
+.card svg circle{
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke: #191919;
+    stroke-width: 5;
+    transform: translate(5px, 5px);
+}
+
+.card svg circle:nth-child(2){
+    stroke-dasharray: 440;
+    stroke: var(--clr);
+}
+
+.dots{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 5;
+    justify-content: center;
+}
+
+.dots::before{
+    content: "";
+    position: absolute;
+    top: -3px;
+    width: 15px;
+    height: 15px;
+    background: var(--clr);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--clr), 0 0 60px var(--clr);
+}
+
+#ampm{
+    left: 10px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 1rem;
+    
+}
+
+.social{
+    margin: 2rem;
+    display: flex;
+    gap: 3rem;
+}
+
+.social a{
+    padding: 10px;
+}
+
+.fa-brands{
+    color: cyan;
+    font-size: 1.5rem;
+}
+
+
+@media only screen and (max-width: 650px) {
+
+    .container{
+        flex-direction: column;
+    }
+
+    .clock{
+        flex-direction: column;
+    }
+
+    .social{
+        gap: 1.5rem;
+    }
+    
+    .fa-brands{
+        font-size: 1rem;
+    }
+  }

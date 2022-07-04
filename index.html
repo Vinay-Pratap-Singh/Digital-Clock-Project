@@ -5,165 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Clock</title>
+    <script src="https://kit.fontawesome.com/6ebb309f55.js" crossorigin="anonymous"></script>
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
-<style>
-    body{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: #2f363e;
-        overflow: hidden;
-    }
-
-    .clock{
-        display: flex;
-        gap: 40px;
-        color: #fff;
-    }
-
-    .card{
-        position: relative;
-        width: 150px;
-        height: 150px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .card div{
-        position: absolute;
-        text-align: center;
-        font-size: 1.3rem;
-        font-weight: 800;
-        text-transform: uppercase;
-    }
-
-    .card svg{
-        position: relative;
-        width: 150px;
-        height: 150px;
-        transform: rotate(-90deg);
-    }
-
-    .card svg circle{
-        width: 100%;
-        height: 100%;
-        fill: transparent;
-        stroke: #191919;
-        stroke-width: 5;
-        transform: translate(5px, 5px);
-    }
-
-    .card svg circle:nth-child(2){
-        stroke-dasharray: 440;
-        stroke: var(--clr);
-    }
-
-    .dots{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        z-index: 5;
-        justify-content: center;
-    }
-
-    .dots::before{
-        content: "";
-        position: absolute;
-        top: -3px;
-        width: 15px;
-        height: 15px;
-        background: var(--clr);
-        border-radius: 50%;
-        box-shadow: 0 0 20px var(--clr), 0 0 60px var(--clr);
-    }
-
-    #ampm{
-        left: 10px;
-    }
-</style>
-
 <body>
-    <div class="clock">
-        <div class="card" style="--clr:#ff2972">
-            <div class="dots" id="hour_dot"></div>
-            <svg>
-                <circle cx="70" cy="70" r="70"/>
-                <circle cx="70" cy="70" r="70" id="hour_progress"/>
-            </svg>
-            <div id="hour">00</div>
-        </div>
-        
-        <div class="card" style="--clr:#fee800" >
-            <div class="dots" id="minute_dot"></div>
-            <svg>
-                <circle cx="70" cy="70" r="70"/>
-                <circle cx="70" cy="70" r="70" id="minute_progress"/>
-            </svg>
-            <div id="minute">00</div>
-        </div>
-        
-        <div class="card" style="--clr:#04fc43">
-            <div class="dots" id="second_dot"></div>
-            <svg>
-                <circle cx="70" cy="70" r="70"/>
-                <circle cx="70" cy="70" r="70" id="second_progress"/>
-            </svg>
-            <div id="second">00</div>
+    <div class="container">
+        <div class="clock">
+            <div class="card" style="--clr:#ff2972">
+                <div class="dots" id="hour_dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"/>
+                    <circle cx="70" cy="70" r="70" id="hour_progress"/>
+                </svg>
+                <div id="hour">00</div>
+            </div>
+            
+            <div class="card" style="--clr:#fee800" >
+                <div class="dots" id="minute_dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"/>
+                    <circle cx="70" cy="70" r="70" id="minute_progress"/>
+                </svg>
+                <div id="minute">00</div>
+            </div>
+            
+            <div class="card" style="--clr:#04fc43">
+                <div class="dots" id="second_dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"/>
+                    <circle cx="70" cy="70" r="70" id="second_progress"/>
+                </svg>
+                <div id="second">00</div>
+            </div>
         </div>
 
-        <div class="card">
+        <div class="">
             <div id="ampm">am</div>
         </div>
     </div>
+
+    <div class="social">
+        <a href="https://github.com/Vinay-Pratap-Singh" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="https://twitter.com/harvi2001" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/vinay-pratap-singh-4b265a212/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
 </body>
-
-<script>
-    setInterval(() => {
-        let hh = document.getElementById("hour_progress");
-        let mm = document.getElementById("minute_progress");
-        let ss = document.getElementById("second_progress");
-
-        let t = new Date();
-        let hr = t.getHours();
-        let min = t.getMinutes();
-        let sec = t.getSeconds();
-        let zone = "";
-        if(hr >= 12){
-            hr = hr-12;
-            zone = "pm";
-        }
-        else{
-            zone = "am";
-        }
-        if(hr < 10){
-            hr = "0"+hr;
-        }
-        if(min < 10){
-            min = "0"+min;
-        }
-        if(sec < 10){
-            sec = "0"+sec;
-        }
-
-        hour.innerHTML = `${hr} <br> hours`;
-        minute.innerHTML = `${min} <br> minutes`;
-        second.innerHTML = `${sec} <br> seconds`;
-        ampm.innerHTML = zone;
-        
-
-        hh.style.strokeDashoffset = 440 - (440 * hr) / 12;
-        mm.style.strokeDashoffset = 440 - (440 * min) / 60;
-        ss.style.strokeDashoffset = 440 - (440 * sec) / 60;
-
-        hour_dot.style.transform = `rotate(${hr * 30}deg)`;
-        minute_dot.style.transform = `rotate(${min * 6}deg)`;
-        second_dot.style.transform = `rotate(${sec * 6}deg)`;
-    }, );
-</script>
 
 
 </html>
