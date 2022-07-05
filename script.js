@@ -9,11 +9,13 @@ setInterval(() => {
     let sec = t.getSeconds();
     let zone = "";
     if(hr >= 12){
-        hr = hr-12;
         zone = "pm";
     }
     else{
         zone = "am";
+    }
+    if(hr > 12){
+        hr = hr - 12;
     }
     if(hr < 10){
         hr = "0"+hr;
